@@ -5,7 +5,12 @@ class example {
 
     public static void main(String args[]) {
 
-        NuxeoDMInstance nuxeodm = new NuxeoDMInstance(DriverFactory.getDriver("firefox"),"https://intranet.nuxeo.com/");
+        NuxeoDMInstance nuxeodm = NuxeoDMInstanceFactory.getInstance(DriverFactory.getDriver("firefox"),"https://intranet.nuxeo.com/");
+        if (nuxeodm==null) {
+            return;
+        } else {
+            System.out.println("Got Nuxeo DM instance");
+        }
 
     }
 

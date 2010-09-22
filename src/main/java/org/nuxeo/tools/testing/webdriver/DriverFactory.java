@@ -99,7 +99,7 @@ public class DriverFactory {
                 capabilities = DesiredCapabilities.htmlUnit();
             } else {
                 log.error("Browser "+browser+" not supported, choose one of firefox, ie, chrome, htmlunit or remote-*");
-                throw new RuntimeException("Invalid browser");
+                return null;
             }
 
             if (platform==null) {
@@ -120,7 +120,7 @@ public class DriverFactory {
                 capabilities.setPlatform(Platform.MAC);
             } else {
                 log.error("Platform "+platform+" not supported, choose one of any, unix, windows, xp, vista, mac");
-                throw new RuntimeException("Invalid platform");
+                return null;
             }
 
             capabilities.setJavascriptEnabled(true);
@@ -130,7 +130,8 @@ public class DriverFactory {
                 driverURL = new URL(url);
             } catch (MalformedURLException e) {
                 log.error("Driver URL "+url+" is invalid");
-                throw new RuntimeException("Invalid URL");
+                log.error(e.getMessage());
+                return null;
             }
 
             RemoteWebDriver remoteDriver = null;
@@ -138,7 +139,8 @@ public class DriverFactory {
                 remoteDriver = new RemoteWebDriver(driverURL,capabilities);
             } catch (Exception e) {
                 log.error("Could not create remote driver");
-                throw new RuntimeException(e.getMessage());
+                log.error(e.getMessage());
+                return null;
             }
 
             Capabilities realCapabilities = remoteDriver.getCapabilities();
@@ -155,32 +157,36 @@ public class DriverFactory {
                 driver = (WebDriver)new FirefoxDriver();
             } catch (Exception e) {
                 log.error("Could not create Firefox driver");
-                throw new RuntimeException(e.getMessage());
+                log.error(e.getMessage());
+                return null;
             }
         } else if (browser.equals("ie")) {
             try {
                 driver = (WebDriver)new InternetExplorerDriver();
             } catch (Exception e) {
                 log.error("Could not create Internet Explorer driver");
-                throw new RuntimeException(e.getMessage());
+                log.error(e.getMessage());
+                return null;
             }
         } else if (browser.equals("chrome")) {
             try {
             driver = (WebDriver)new ChromeDriver();
             } catch (Exception e) {
                 log.error("Could not create Chrome driver");
-                throw new RuntimeException(e.getMessage());
+                log.error(e.getMessage());
+                return null;
             }
         } else if (browser.equals("htmlunit")) {
             try {
                 driver = (WebDriver)new HtmlUnitDriver();
             } catch (Exception e) {
                 log.error("Could not create HtmlUnit driver");
-                throw new RuntimeException(e.getMessage());
+                log.error(e.getMessage());
+                return null;
             }
         } else {
             log.error("Browser "+browser+" not supported, choose one of firefox, ie, chrome, htmlunit or remote-*");
-            throw new RuntimeException("Invalid browser");
+            return null;
         }
 
         return driver;
