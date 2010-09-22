@@ -20,9 +20,20 @@
       <version>1.1</version>
     </dependency>
     <dependency>
+      <groupId>org.nuxeo.common</groupId>
+      <artifactId>nuxeo-common</artifactId>
+      <version>5.4.0-SNAPSHOT</version>
+    </dependency>
+    <dependency>
       <groupId>log4j</groupId>
       <artifactId>log4j</artifactId>
       <version>1.2.16</version>
+    </dependency>
+    <dependency>
+      <groupId>org.nuxeo.tools.testing</groupId>
+      <artifactId>webdriver-tests-resources</artifactId>
+      <version>1.0</version>
+      <type>zip</type>
     </dependency>
   </dependencies>
 
@@ -43,6 +54,25 @@
           <source>1.5</source>
           <target>1.5</target>
         </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-dependency-plugin</artifactId>
+        <executions>
+          <execution>
+            <id>unpack-dependencies</id>
+            <phase>package</phase>
+            <goals>
+              <goal>unpack-dependencies</goal>
+            </goals>
+            <configuration>
+              <outputDirectory>src/main/resources</outputDirectory>
+              <includeGroupIds>org.nuxeo.tools.testing</includeGroupIds>
+              <includeArtifactIds>webdriver-tests-resources</includeArtifactIds>
+              <includeTypes>zip</includeTypes>
+            </configuration>
+          </execution>
+        </executions>
       </plugin>
       <plugin>
         <artifactId>maven-assembly-plugin</artifactId>

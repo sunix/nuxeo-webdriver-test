@@ -29,7 +29,7 @@ public class NuxeoDM532Instance extends NuxeoDMInstance {
 
     /**
      * Constructor
-     * @param driver the WebDriver object to be used
+     * @param mydriver the WebDriver object to be used
      * @param url the URL of the Nuxeo DM instance
      */
     public NuxeoDM532Instance(WebDriver mydriver,String url) {
