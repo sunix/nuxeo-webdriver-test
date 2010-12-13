@@ -138,6 +138,19 @@ public class NuxeoDMInstance {
 
     }
 
+    /**
+     * Log out of the Nuxeo DM instance
+     */
+    public void logout() {
+
+        log.info("Starting logout");
+
+        driver.findElement(By.linkText("Log out")).click();
+        driver.findElement(By.id("username"));
+
+        log.info("Logout - done.");
+
+    }
 
     /**
      * Check ImgaMagick functionality

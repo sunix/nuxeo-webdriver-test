@@ -52,14 +52,24 @@ public class NuxeoDMInstanceFactory {
         } catch (Exception e) {
             log.error("Could not connect to the Nuxeo DM instance.");
             log.error(e.getMessage());
+            driver.quit();
             return null;
         }
 
         // Grab Nuxeo DM version
-        String nuxeoFullVersion = driver.findElement(By.xpath("//div[@class[contains(.,'loginLegal')] and contains(.,'Nuxeo DM')]")).getText();
+        String nuxeoFullVersion = null;
+        try {
+            nuxeoFullVersion = driver.findElement(By.xpath("//div[@class[contains(.,'loginLegal')] and contains(.,'Nuxeo DM')]")).getText();
+        } catch (Exception e) {
+            log.error("Not a Nuxeo DM instance or instance not responding.");
+            log.error(e.getMessage());
+            driver.quit();
+            return null;
+        }
         Matcher versionMatcher = versionPattern.matcher(nuxeoFullVersion);
         if (!versionMatcher.matches()) {
             log.error("No version string could be identified");
+            driver.quit();
             return null;
         }
         String version = versionMatcher.group(1);
@@ -67,10 +77,11 @@ public class NuxeoDMInstanceFactory {
 
         if (version.equals("5.3.2")) {
             return (NuxeoDMInstance)new NuxeoDM532Instance(driver,url);
-        } else if (version.equals("5.4.0")) {
+        } else if (version.equals("5.4.0")||version.equals("5.4.0.1")) {
             return (NuxeoDMInstance)new NuxeoDM540Instance(driver,url);
         } else {
             log.error("Nuxeo DM version "+version+" not supported");
+            driver.quit();
             return null;
         }
     }

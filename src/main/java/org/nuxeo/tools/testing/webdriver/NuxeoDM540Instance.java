@@ -21,7 +21,7 @@ import org.openqa.selenium.By;
 
 
 /**
- * Helper class to drive tests on a Nuxeo DM 5.3.2 instance.
+ * Helper class to drive tests on a Nuxeo DM 5.4.0 instance.
  *
  * @author Mathieu Guillaume <mg@nuxeo.com>
  */
