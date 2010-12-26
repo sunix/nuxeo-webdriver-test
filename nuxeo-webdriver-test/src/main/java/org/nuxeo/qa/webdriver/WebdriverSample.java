@@ -22,7 +22,15 @@ public class WebdriverSample {
         WebElement nxw_reponse_recipients_suggest = driver.findElement(By.id("distribution_participants:nxl_cm_participants:nxw_reponse_recipients_suggest"));
         nxw_reponse_recipients_suggest.sendKeys("Bre");
 
-        WebElement ajaxUserListElement = driver.findElement(By.xpath("//table[@id='distribution_participants:nxl_cm_participants:nxw_reponse_recipients_suggestionBox:suggest']/tbody/tr[1]/td[2]"));
+        WebElement ajaxUserListElement = null;
+        // wait until the list appears
+        while (ajaxUserListElement == null) {
+            try {
+                ajaxUserListElement = driver.findElement(By.xpath("//table[@id='distribution_participants:nxl_cm_participants:nxw_reponse_recipients_suggestionBox:suggest']/tbody/tr[1]/td[2]"));
+            } catch (Exception e) {
+                // ignore
+            }
+        }
 
         String value = ajaxUserListElement.getText();
         System.out.println(value);
