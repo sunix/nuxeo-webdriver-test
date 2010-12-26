@@ -2,6 +2,7 @@ package org.nuxeo.qa.webdriver;
 
 import java.net.URL;
 import org.nuxeo.qa.webdriver.driver.users.LoginDriver;
+import org.nuxeo.qa.webdriver.finder.FindElementUntil;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -22,16 +23,9 @@ public class WebdriverSample {
         WebElement nxw_reponse_recipients_suggest = driver.findElement(By.id("distribution_participants:nxl_cm_participants:nxw_reponse_recipients_suggest"));
         nxw_reponse_recipients_suggest.sendKeys("Bre");
 
-        WebElement ajaxUserListElement = null;
-        // wait until the list appears
-        while (ajaxUserListElement == null) {
-            try {
-                ajaxUserListElement = driver.findElement(By.xpath("//table[@id='distribution_participants:nxl_cm_participants:nxw_reponse_recipients_suggestionBox:suggest']/tbody/tr[1]/td[2]"));
-            } catch (Exception e) {
-                // ignore
-            }
-        }
-
+        WebElement ajaxUserListElement = new FindElementUntil(
+                driver,
+                By.xpath("//table[@id='distribution_participants:nxl_cm_participants:nxw_reponse_recipients_suggestionBox:suggest']/tbody/tr[1]/td[2]")).find();
         String value = ajaxUserListElement.getText();
         System.out.println(value);
 
