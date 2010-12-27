@@ -10,9 +10,9 @@
 
 
   <groupId>org.nuxeo.qa</groupId>
-  <artifactId>nuxeo-webdriver-test</artifactId>
-  <name>nuxeo-webdriver-test project</name>
-  <description>nuxeo-webdriver-test project description</description>
+  <artifactId>nuxeo-qa-behaviourdriven-framework</artifactId>
+  <name>nuxeo-qa-behaviourdriven-framework</name>
+  <description>Nuxeo-qa-behaviourdriven-framework. Framework for building behaviour driven tests around Nuxeo based product.</description>
   <version>1.0-SNAPSHOT</version>
 
   <dependencies>
