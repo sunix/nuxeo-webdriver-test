@@ -1,32 +1,32 @@
 <?xml version="1.0"?>
 <project>
-	<modelVersion>4.0.0</modelVersion>
+  <modelVersion>4.0.0</modelVersion>
 
-	<parent>
-		<groupId>org.nuxeo.ecm.platform</groupId>
-		<artifactId>nuxeo-features-parent</artifactId>
-		<version>5.4.1-SNAPSHOT</version>
-	</parent>
+  <parent>
+    <groupId>org.nuxeo.ecm.platform</groupId>
+    <artifactId>nuxeo-features-parent</artifactId>
+    <version>5.4.1-SNAPSHOT</version>
+  </parent>
 
 
-	<groupId>org.nuxeo.qa</groupId>
-	<artifactId>nuxeo-webdriver-test</artifactId>
-	<name>nuxeo-webdriver-test project</name>
-	<description>nuxeo-webdriver-test project description</description>
-	<version>1.0-SNAPSHOT</version>
+  <groupId>org.nuxeo.qa</groupId>
+  <artifactId>nuxeo-webdriver-test</artifactId>
+  <name>nuxeo-webdriver-test project</name>
+  <description>nuxeo-webdriver-test project description</description>
+  <version>1.0-SNAPSHOT</version>
 
-	<dependencies>
-		<dependency>
-			<groupId>org.seleniumhq.selenium</groupId>
-			<artifactId>selenium</artifactId>
-			<version>2.0a7</version>
+  <dependencies>
+    <dependency>
+      <groupId>org.seleniumhq.selenium</groupId>
+      <artifactId>selenium</artifactId>
+      <version>2.0a7</version>
+    </dependency>
 
-		</dependency>
+    <dependency>
+      <groupId>org.seleniumhq.selenium</groupId>
+      <artifactId>selenium-server</artifactId>
+      <version>2.0a7</version>
+    </dependency>
+  </dependencies>
 
-		<dependency>
-			<groupId>org.seleniumhq.selenium</groupId>
-			<artifactId>selenium-server</artifactId>
-			<version>2.0a7</version>
-		</dependency>
-	</dependencies>
 </project>
