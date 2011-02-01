@@ -42,8 +42,7 @@ public class WebdriverSample {
                 driver,
                 By.xpath("//table[@id='distribution_participants:nxl_cm_participants:nxw_reponse_recipients_suggestionBox:suggest']/tbody/tr[1]/td[2]")).find();
         String value = ajaxUserListElement.getText();
-        System.out.println(value);
-
+        
         driver.quit();
     }
 }

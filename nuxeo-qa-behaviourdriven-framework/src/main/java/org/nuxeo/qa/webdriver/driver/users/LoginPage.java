@@ -74,7 +74,6 @@ public class LoginPage {
         if (language != null) {
             List<WebElement> list = languageSelectBox.findElements(By.tagName("option"));
             for (WebElement webElement : list) {
-                System.out.println(webElement.getText());
                 if (language.trim().equals(webElement.getText().trim())) {
                     webElement.setSelected();
                     break;
