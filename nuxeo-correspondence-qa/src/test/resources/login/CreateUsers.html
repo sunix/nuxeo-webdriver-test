@@ -1,0 +1,190 @@
+<html xmlns:concordion="http://www.concordion.org/2007/concordion">
+<head>
+<meta http-equiv="Content-Style-Type" content="text/css" />
+<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+<link href="../concordion.css" rel="stylesheet" type="text/css" />
+<title>Login: Create users</title>
+</head>
+<body>
+<p><a href="../NuxeoCorrespondenceTestPlan.html#plan">back to
+test plan</a></p>
+<h1>Login: Create Users</h1>
+<blockquote>
+<p>This is creating the users that will be used in the other tests</p>
+</blockquote>
+<ul>
+  <li>Having that
+  <ul>
+    <li>The user Administrator is the default one (unchanged)</li>
+    <li>The server is started, connecting to <span
+      concordion:set="#nuxeourl">http://localhost:8080/nuxeo</span>
+    displays the default login page.</li>
+  </ul>
+  </li>
+  <li>Login with administration rights to create Users
+  <ul>
+    <li>When
+    <ul>
+      <li>the user fills the following informations: <span
+        concordion:set="#username">Administrator</span> with the
+      password <span concordion:set="#password">Administrator</span> and
+      the language <span concordion:set="#language">English
+      (United States)</span></li>
+      <li>the user <span
+        concordion:assertEquals="login(#nuxeoUrl, #username, #password, #language)">login</span></li>
+    </ul>
+    </li>
+  </ul>
+  <ul>
+    <li>Then
+    <ul>
+      <li>the user is <span concordion:assertEquals="isConnected()">connected</span></li>
+    </ul>
+    </li>
+  </ul>
+  </li>
+
+  <li>Create user John Doe
+  <ul>
+    <li>When
+    <ul>
+      <li>With a username <span concordion:set="#username">jdoe</span>,
+      a firstname <span concordion:set="#firstname">John</span> , a
+      lastname <span concordion:set="#lastname">Doe</span> , a company <span
+        concordion:set="#company">Nuxeo</span> , a password<span
+        concordion:set="#password">jdoe1</span>, a email <span
+        concordion:set="#email">jdoe@nuxeo.com</span> and in a group <span
+        concordion:set="#group">members</span>,
+      <li>the administrator <span
+        concordion:assertEquals="createUser(#username,#firstname, #lastname,#company,#password )">creates</span>
+      a new user</li>
+    </ul>
+    </li>
+  </ul>
+  <ul>
+    <li>Then
+    <ul>
+      <li>the user created <span
+        concordion:assertEquals="userExist(#username)">is present</span>
+      in the list of users.</li>
+    </ul>
+    </li>
+  </ul>
+  </li>
+
+  <li>Create user John Smith
+  <ul>
+    <li>When
+    <ul>
+      <li>With a username <span concordion:set="#username">jsmith</span>,
+      a firstname <span concordion:set="#firstname">John</span> , a
+      lastname <span concordion:set="#lastname">Smith</span> , a company
+      <span concordion:set="#company">Nuxeo</span> , a password<span
+        concordion:set="#password">jsmith1</span>, a email <span
+        concordion:set="#email">jsmith@nuxeo.com</span> and in a group <span
+        concordion:set="#group">members</span>,
+      <li>the administrator <span
+        concordion:assertEquals="createUser(#username,#firstname, #lastname,#company,#password )">creates</span>
+      a new user</li>
+    </ul>
+    </li>
+  </ul>
+  <ul>
+    <li>Then
+    <ul>
+      <li>the user created <span
+        concordion:assertEquals="userExist(#username)">is present</span>
+      in the list of users.</li>
+    </ul>
+    </li>
+  </ul>
+  </li>
+
+  <li>Create user Bree
+  <ul>
+    <li>When
+    <ul>
+      <li>With a username <span concordion:set="#username">bree</span>,
+      a firstname <span concordion:set="#firstname">Bree</span> , a
+      lastname <span concordion:set="#lastname">Van de Kaamp</span> , a
+      company <span concordion:set="#company">Nuxeo</span> , a password<span
+        concordion:set="#password">bree1</span>, a email <span
+        concordion:set="#email">bree@nuxeo.com</span> and in a group <span
+        concordion:set="#group">members</span>,
+      <li>the administrator <span
+        concordion:assertEquals="createUser(#username,#firstname, #lastname,#company,#password )">creates</span>
+      a new user</li>
+    </ul>
+    </li>
+  </ul>
+  <ul>
+    <li>Then
+    <ul>
+      <li>the user created <span
+        concordion:assertEquals="userExist(#username)">is present</span>
+      in the list of users.</li>
+    </ul>
+    </li>
+  </ul>
+  </li>
+
+  <li>Create user Lucien Bramard
+  <ul>
+    <li>When
+    <ul>
+      <li>With a username <span concordion:set="#username">lbramard</span>,
+      a firstname <span concordion:set="#firstname">Lucien</span> , a
+      lastname <span concordion:set="#lastname">Bramard</span> , a
+      company <span concordion:set="#company">Nuxeo</span> , a password<span
+        concordion:set="#password">lbramard1</span>, a email <span
+        concordion:set="#email">lbramard@nuxeo.com</span> and in a group
+      <span concordion:set="#group">members</span>,
+      <li>the administrator <span
+        concordion:assertEquals="createUser(#username,#firstname, #lastname,#company,#password )">creates</span>
+      a new user</li>
+    </ul>
+    </li>
+  </ul>
+  <ul>
+    <li>Then
+    <ul>
+      <li>the user created <span
+        concordion:assertEquals="userExist(#username)">is present</span>
+      in the list of users.</li>
+    </ul>
+    </li>
+  </ul>
+  </li>
+
+  <li>Create user Linnet Scavo
+  <ul>
+    <li>When
+    <ul>
+      <li>With a username <span concordion:set="#username">linnet</span>,
+      a firstname <span concordion:set="#firstname"> Linnet</span> , a
+      lastname <span concordion:set="#lastname">Scavo</span> , a company
+      <span concordion:set="#company">Nuxeo</span> , a password<span
+        concordion:set="#password">linnet1</span>, a email <span
+        concordion:set="#email">linnet@nuxeo.com</span> and in a group <span
+        concordion:set="#group">members</span>,
+      <li>the administrator <span
+        concordion:assertEquals="createUser(#username,#firstname, #lastname,#company,#password )">creates</span>
+      a new user</li>
+    </ul>
+    </li>
+  </ul>
+  <ul>
+    <li>Then
+    <ul>
+      <li>the user created <span
+        concordion:assertEquals="userExist(#username)">is present</span>
+      in the list of users.</li>
+    </ul>
+    </li>
+  </ul>
+  </li>
+
+
+</ul>
+</body>
+</html>
