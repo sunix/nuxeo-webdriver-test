@@ -15,22 +15,21 @@
  */
 package org.nuxeo.qa.webdriver;
 
-import java.net.URL;
-
-import org.nuxeo.qa.webdriver.driver.users.LoginDriver;
+import org.nuxeo.qa.webdriver.driver.users.LoginPage;
 import org.nuxeo.qa.webdriver.finder.FindElementUntil;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.support.PageFactory;
 
 public class WebdriverSample {
     public static void main(String[] args) throws Exception {
         WebDriver driver = new FirefoxDriver();
 
-        LoginDriver logindriver = new LoginDriver(driver, new URL(
-                "http://localhost:8080/nuxeo/"));
-        logindriver.login("Administrator", "Administrator", "en_US");
+        LoginPage loginPage = PageFactory.initElements(driver, LoginPage.class);
+        loginPage.login("http://localhost:8080/nuxeo", "Administrator",
+                "Administrator", "English (United States)");
 
         driver.findElement(By.linkText("Bree Van de Kaamp")).click();
         driver.findElement(By.linkText("Test incoming pia document")).click();

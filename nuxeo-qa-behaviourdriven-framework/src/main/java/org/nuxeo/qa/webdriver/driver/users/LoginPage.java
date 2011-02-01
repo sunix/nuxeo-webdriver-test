@@ -16,60 +16,72 @@
  */
 package org.nuxeo.qa.webdriver.driver.users;
 
-import java.net.URL;
 import java.util.List;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
 
 /**
- * Webdriver login driver. Connect to the login page and login.
+ * Nuxeo default login page. Connect to the login page and login.
  *
  * @author Sun Seng David TAN <stan@nuxeo.com>
  *
  */
-public class LoginDriver {
+public class LoginPage {
 
     WebDriver driver;
 
-    URL baseUrl;
+    @FindBy(id = "username")
+    WebElement usernameInputTextBox;
 
-    public LoginDriver(WebDriver webdriver, URL basedUrl) {
+    @FindBy(id = "password")
+    WebElement passwordInputTextBox;
+
+    @FindBy(name = "Submit")
+    WebElement submitButton;
+
+    @FindBy(id = "language")
+    WebElement languageSelectBox;
+
+    public LoginPage(WebDriver webdriver) {
         driver = webdriver;
-        baseUrl = basedUrl;
     }
 
     /**
      * login.jsp
      *
+     * @param baseUrl the url to use
      * @param username
      * @param password
      * @param language is a value of one of the options in the language select
      *            box. For example, en_US or fr
      */
-    public void login(String username, String password, String language) {
+    public void login(String baseUrl, String username, String password,
+            String language) {
 
         try {
-            driver.get(baseUrl.toString() + "/logout");
+            driver.get(baseUrl + "/logout");
         } catch (Exception e) {
             // trying but ok if failing
-            e.printStackTrace();
         }
-        driver.get(baseUrl.toString());
-        driver.findElement(By.id("username")).sendKeys(username);
-        driver.findElement(By.id("password")).sendKeys(password);
+        driver.get(baseUrl);
+
+        usernameInputTextBox.sendKeys(username);
+        passwordInputTextBox.sendKeys(password);
+
         if (language != null) {
-            List<WebElement> list = driver.findElement(By.id("language")).findElements(
-                    By.tagName("option"));
+            List<WebElement> list = languageSelectBox.findElements(By.tagName("option"));
             for (WebElement webElement : list) {
-                if (language.equals(webElement.getValue())) {
+                System.out.println(webElement.getText());
+                if (language.trim().equals(webElement.getText().trim())) {
                     webElement.setSelected();
                     break;
                 }
             }
         }
-        driver.findElement(By.name("Submit")).click();
+        submitButton.click();
     }
 
 }
