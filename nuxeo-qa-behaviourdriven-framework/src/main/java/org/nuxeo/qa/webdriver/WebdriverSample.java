@@ -27,9 +27,9 @@ public class WebdriverSample {
     public static void main(String[] args) throws Exception {
         WebDriver driver = new FirefoxDriver();
 
-        LoginPage loginPage = PageFactory.initElements(driver, LoginPage.class);
-        loginPage.login("http://localhost:8080/nuxeo", "Administrator",
-                "Administrator", "English (United States)");
+        LoginPage loginPage = LoginPage.getLoginPage(driver, "http://localhost:8080/nuxeo");
+        loginPage.login("Administrator", "Administrator",
+                "English (United States)");
 
         driver.findElement(By.linkText("Bree Van de Kaamp")).click();
         driver.findElement(By.linkText("Test incoming pia document")).click();
@@ -42,7 +42,7 @@ public class WebdriverSample {
                 driver,
                 By.xpath("//table[@id='distribution_participants:nxl_cm_participants:nxw_reponse_recipients_suggestionBox:suggest']/tbody/tr[1]/td[2]")).find();
         String value = ajaxUserListElement.getText();
-        
+
         driver.quit();
     }
 }

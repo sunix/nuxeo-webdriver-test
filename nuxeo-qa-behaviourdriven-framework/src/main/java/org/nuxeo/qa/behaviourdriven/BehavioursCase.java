@@ -16,6 +16,7 @@
 package org.nuxeo.qa.behaviourdriven;
 
 
+import org.junit.Before;
 import org.junit.Test;
 /**
  * 
@@ -26,7 +27,7 @@ import org.junit.Test;
 public class BehavioursCase implements Fixture {
     private BehaviourSpecificationProcessor processor = new BehaviourSpecificationProcessor(
             this);
-
+    
     @Test
     public void processSpecification() throws Throwable {
         processor.processSpecification();

@@ -22,6 +22,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 
 /**
  * Nuxeo default login page. Connect to the login page and login.
@@ -58,15 +59,7 @@ public class LoginPage {
      * @param language is a value of one of the options in the language select
      *            box. For example, en_US or fr
      */
-    public void login(String baseUrl, String username, String password,
-            String language) {
-
-        try {
-            driver.get(baseUrl + "/logout");
-        } catch (Exception e) {
-            // trying but ok if failing
-        }
-        driver.get(baseUrl);
+    public void login(String username, String password, String language) {
 
         usernameInputTextBox.sendKeys(username);
         passwordInputTextBox.sendKeys(password);
@@ -81,6 +74,17 @@ public class LoginPage {
             }
         }
         submitButton.click();
+    }
+
+    public static LoginPage getLoginPage(WebDriver driver, String baseUrl) {
+        try {
+            driver.get(baseUrl + "/logout");
+        } catch (Exception e) {
+            // trying but ok if failing
+        }
+        driver.get(baseUrl);
+
+        return PageFactory.initElements(driver, LoginPage.class);
     }
 
 }

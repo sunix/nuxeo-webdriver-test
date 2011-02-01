@@ -31,6 +31,11 @@
       <artifactId>concordion</artifactId>
       <version>1.3.1</version>
     </dependency>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <scope>compile</scope>
+    </dependency>
   </dependencies>
 
 </project>
