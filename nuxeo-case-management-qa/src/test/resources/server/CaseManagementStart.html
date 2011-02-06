@@ -13,25 +13,27 @@ test plan</a></p>
 <p>Nuxeo case management server startup instruction.</p>
 </blockquote>
 <ul>
-  <li>Start the server if its not started
+  <li>Start the server at <span concordion:set="#serverUrl">http://localhost:8080/nuxeo</span>
+  if its <span concordion:execute="#serverStarted=checkServerStarted(#serverUrl)">not started</span>
   <ul>
     <li>The property <span concordion:set="#locationProp">case.management.distribution.location</span>
-    <span concordion:assertEquals="serverLocationIsSet(#locationProp)">is
+    <span concordion:assertEquals="serverLocationIsSet(#locationProp,#serverStarted)">is
     set</span>. it represents the location of the distribution zip file used by
     our concordion specs</li>
     <li>The server should be installed in <span
       concordion:set="#serverFolder">nuxeo-cm-tomcat</span></li>
     <li>Use the command
-    <blockquote concordion:set="#command">unzip nuxeo-case-management-distribution-*-tomcat-cmf.zip</blockquote>
-    <span concordion:assertEquals="unzip(#serverFolder, #command)">unzip</span>
+    <blockquote concordion:set="#command">unzip
+    nuxeo-case-management-distribution-*-tomcat-cmf.zip</blockquote>
+    <span concordion:assertEquals="unzip(#serverFolder, #command,#serverStarted)">unzip</span>
     the server if needed</li>
     <li>The command
     <blockquote concordion:set="#command">chmod +x nuxeo-cm-tomcat/bin/nuxeoctl</blockquote>
-    <span concordion:assertEquals="givePermission(#command)">gives</span>
+    <span concordion:assertEquals="givePermission(#command,#serverStarted)">gives</span>
     execution permission to the server binaries</li>
     <li>The command
     <blockquote concordion:set="#command">nuxeo-cm-tomcat/bin/nuxeoctl start</blockquote>
-    <span concordion:assertEquals="startServer(#command)">starts</span>
+    <span concordion:assertEquals="startServer(#command,#serverUrl,#serverStarted)">starts</span>
     the server</li>
 
   </ul>

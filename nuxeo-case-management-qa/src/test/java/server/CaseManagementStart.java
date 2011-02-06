@@ -4,6 +4,8 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.net.URL;
+import java.net.URLConnection;
 
 import org.nuxeo.qa.behaviourdriven.BehavioursCase;
 
@@ -11,8 +13,20 @@ public class CaseManagementStart extends BehavioursCase {
 
     File serverPackageLocation;
 
-    public String serverLocationIsSet(String property) {
+    public boolean checkServerStarted(String url) {
+        try {
+            URLConnection conn = new URL(url).openConnection();
+            conn.connect();
+        } catch (Exception e) {
+            return false;
+        }
+        return true;
+    }
 
+    public String serverLocationIsSet(String property, boolean isServerStarted) {
+        if (isServerStarted) {
+            return "is set";
+        }
         if (System.getProperty(property) == null) {
             return "is not set";
         }
@@ -23,8 +37,11 @@ public class CaseManagementStart extends BehavioursCase {
         return "is set";
     }
 
-    public String unzip(String serverFolder, String command)
-            throws IOException, InterruptedException {
+    public String unzip(String serverFolder, String command,
+            boolean isServerStarted) throws IOException, InterruptedException {
+        if (isServerStarted) {
+            return "unzip";
+        }
         // check if the folder exist first before unziping
         String serverFolderLocation = serverPackageLocation.getAbsolutePath()
                 + File.separator + serverFolder;
@@ -53,12 +70,24 @@ public class CaseManagementStart extends BehavioursCase {
         }
     }
 
-    public String startServer(String command) throws IOException {
+    public String startServer(String command, String url,
+            boolean isServerStarted) throws IOException {
+        if (isServerStarted) {
+            return "starts";
+        }
         runCommand(command);
-        return "starts";
+        isServerStarted = checkServerStarted(url);
+        if (isServerStarted) {
+            return "starts";
+        }
+        return "doesn't start";
     }
 
-    public String givePermission(String command) throws IOException {
+    public String givePermission(String command, boolean isServerStarted)
+            throws IOException {
+        if (isServerStarted) {
+            return "gives";
+        }
         runCommand(command);
         return "gives";
     }
