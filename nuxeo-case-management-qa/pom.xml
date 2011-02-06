@@ -8,20 +8,42 @@
     <version>5.4.1-SNAPSHOT</version>
   </parent>
 
-  <groupId>org.nuxeo.correspondence</groupId>
-  <artifactId>nuxeo-correspondence-qa</artifactId>
-  <name>nuxeo-correspondence-qa project</name>
-  <description>nuxeo-correspondence-qa project description</description>
+  <groupId>org.nuxeo.cm</groupId>
+  <artifactId>nuxeo-case-management-qa</artifactId>
+  <name>nuxeo-case-management-qa project</name>
+  <description>nuxeo-case-management-qa project description</description>
 
   <dependencies>
     <dependency>
       <groupId>org.nuxeo.qa</groupId>
       <artifactId>nuxeo-qa-behaviourdriven</artifactId>
     </dependency>
+
+    <dependency>
+      <groupId>org.nuxeo.cm</groupId>
+      <artifactId>nuxeo-case-management-distribution</artifactId>
+      <classifier>tomcat-cmf</classifier>
+      <type>zip</type>
+    </dependency>
   </dependencies>
 
   <build>
     <plugins>
+      <plugin>
+        <artifactId>maven-dependency-plugin</artifactId>
+        <executions>
+          <execution>
+            <phase>compile</phase>
+            <goals>
+              <goal>copy-dependencies</goal>
+            </goals>
+            <configuration>
+              <includeArtifactIds>nuxeo-case-management-distribution</includeArtifactIds>
+              <outputDirectory>${project.build.directory}</outputDirectory>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
       <plugin>
         <artifactId>maven-surefire-plugin</artifactId>
         <configuration>
@@ -29,6 +51,10 @@
             <property>
               <name>concordion.output.dir</name>
               <value>target/concordion</value>
+            </property>
+            <property>
+              <name>case.management.distribution.location</name>
+              <value>${project.build.directory}</value>
             </property>
           </systemProperties>
           <includes>

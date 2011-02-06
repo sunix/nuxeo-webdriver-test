@@ -21,7 +21,7 @@
 
   <modules>
     <module>nuxeo-qa-behaviourdriven</module>
-    <module>nuxeo-correspondence-qa</module>
+    <module>nuxeo-case-management-qa</module>
   </modules>
 
   <dependencyManagement>
@@ -45,6 +45,13 @@
         <groupId>org.concordion</groupId>
         <artifactId>concordion</artifactId>
         <version>1.3.1</version>
+      </dependency>
+      <dependency>
+        <groupId>org.nuxeo.cm</groupId>
+        <artifactId>nuxeo-case-management-distribution</artifactId>
+        <version>1.6-SNAPSHOT</version>
+        <classifier>tomcat-cmf</classifier>
+        <type>zip</type>
       </dependency>
     </dependencies>
   </dependencyManagement>

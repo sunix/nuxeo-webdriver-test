@@ -10,7 +10,6 @@
 <p>This document contains a set of tests allowing to ensure that the
 Nuxeo Correspondence project works well.</p>
 
-
 <p>Managing incoming correspondence from different mediums (fax,
 letters, email), while meeting mandated turnaround times and audit
 trails, is a time- and resource-intensive undertaking when
@@ -33,8 +32,10 @@ security, auditing, lifecycle and classification demanded by government
 and regulated markets.</p>
 
 
-<p>The tests will be run on a Nuxeo Correspondence with an empty
-database (h2)</p>
+<p><a
+  concordion:run="org.nuxeo.qa.behaviourdriven.NuxeoConcordionRunner"
+  href="server/CaseManagementStart.html">The tests will be run on a
+Nuxeo Case Management server installed and started</a></p>
 
 <h1><a id="plan">Test Plan</a></h1>
 <ol>
@@ -42,10 +43,16 @@ database (h2)</p>
     concordion:run="org.nuxeo.qa.behaviourdriven.NuxeoConcordionRunner"
     href="login/LoginOk.html">LoginOk.html</a> This is testing that the
   log in works</li>
-<!--  <li><a-->
-<!--    concordion:run="org.nuxeo.qa.behaviourdriven.NuxeoConcordionRunner"-->
-<!--    href="login/CreateUsers.html">CreateUsers.html</a> Create the users-->
-<!--  for the other test if necessary</li>-->
+  <!--  <li><a-->
+  <!--    concordion:run="org.nuxeo.qa.behaviourdriven.NuxeoConcordionRunner"-->
+  <!--    href="login/CreateUsers.html">CreateUsers.html</a> Create the users-->
+  <!--  for the other test if necessary</li>-->
 </ol>
+
+<p><a
+  concordion:run="org.nuxeo.qa.behaviourdriven.NuxeoConcordionRunner"
+  href="server/CaseManagementStop.html">We end the tests by stopping
+the server</a></p>
+
 </body>
 </html>

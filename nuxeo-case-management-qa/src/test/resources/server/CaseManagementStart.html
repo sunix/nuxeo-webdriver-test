@@ -1,0 +1,43 @@
+<html xmlns:concordion="http://www.concordion.org/2007/concordion">
+<head>
+<meta http-equiv="Content-Style-Type" content="text/css" />
+<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+<link href="../concordion.css" rel="stylesheet" type="text/css" />
+<title>Nuxeo Case Management server start instruction</title>
+</head>
+<body>
+<p><a href="../NuxeoCorrespondenceTestPlan.html#plan">back to
+test plan</a></p>
+<h1>Nuxeo Case Management server start instruction</h1>
+<blockquote>
+<p>Nuxeo case management server startup instruction.</p>
+</blockquote>
+<ul>
+  <li>Start the server if its not started
+  <ul>
+    <li>The property <span concordion:set="#locationProp">case.management.distribution.location</span>
+    <span concordion:assertEquals="serverLocationIsSet(#locationProp)">is
+    set</span>. it represents the location of the distribution zip file used by
+    our concordion specs</li>
+    <li>The server should be installed in <span
+      concordion:set="#serverFolder">nuxeo-cm-tomcat</span></li>
+    <li>Use the command
+    <blockquote concordion:set="#command">unzip nuxeo-case-management-distribution-*-tomcat-cmf.zip</blockquote>
+    <span concordion:assertEquals="unzip(#serverFolder, #command)">unzip</span>
+    the server if needed</li>
+    <li>The command
+    <blockquote concordion:set="#command">chmod +x nuxeo-cm-tomcat/bin/nuxeoctl</blockquote>
+    <span concordion:assertEquals="givePermission(#command)">gives</span>
+    execution permission to the server binaries</li>
+    <li>The command
+    <blockquote concordion:set="#command">nuxeo-cm-tomcat/bin/nuxeoctl start</blockquote>
+    <span concordion:assertEquals="startServer(#command)">starts</span>
+    the server</li>
+
+  </ul>
+  </li>
+</ul>
+
+
+</body>
+</html>
