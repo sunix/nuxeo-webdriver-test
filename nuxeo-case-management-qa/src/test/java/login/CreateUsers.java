@@ -16,11 +16,12 @@
  */
 package login;
 
+import org.nuxeo.qa.webdriver.driver.users.UserManagementFormPage;
 import org.nuxeo.qa.webdriver.finder.ElementNotFoundException;
-import org.nuxeo.qa.webdriver.finder.FindElementUntil;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.PageFactory;
 
 /**
  * @author Sun Seng David TAN <stan@nuxeo.com>
@@ -48,27 +49,10 @@ public class CreateUsers extends LoginOk {
         }
         driver.findElement(By.linkText(userAndGroupLink)).click();
         driver.findElement(By.id("createUserActionsForm:createUserButton")).click();
-        driver.findElement(By.id("createUser:nxl_user:nxw_username")).sendKeys(
-                username);
-        driver.findElement(By.id("createUser:nxl_user:nxw_firstname")).sendKeys(
-                firstname);
-        driver.findElement(By.id("createUser:nxl_user:nxw_lastname")).sendKeys(
-                lastname);
-        driver.findElement(By.id("createUser:nxl_user:nxw_company")).sendKeys(
-                company);
-        driver.findElement(By.id("createUser:nxl_user:nxw_email")).sendKeys(
-                email);
-        driver.findElement(By.id("createUser:nxl_user:nxw_firstPassword")).sendKeys(
-                password);
-        driver.findElement(By.id("createUser:nxl_user:nxw_secondPassword")).sendKeys(
-                password);
-        driver.findElement(By.id("createUser:nxl_user:nxw_groups_suggest")).sendKeys(
-                group);
-        WebElement ajaxUserListElement = new FindElementUntil(
-                driver,
-                By.xpath("//table[@id='createUser:nxl_user:nxw_groups_suggestionBox:suggest']/tbody/tr[1]/td[2]")).find();
-        ajaxUserListElement.click();
-        driver.findElement(By.id("createUser:button_create")).click();
+        UserManagementFormPage userMgtPage = PageFactory.initElements(driver, UserManagementFormPage.class);
+
+        userMgtPage.createUser(username, firstname, lastname, company, email, password, group);
+
         if (isUserCreated(userAndGroupLink, username)) {
             return "Created";
         }
