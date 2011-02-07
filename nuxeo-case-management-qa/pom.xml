@@ -58,7 +58,7 @@
             </property>
           </systemProperties>
           <includes>
-            <include>**/NuxeoCorrespondenceTestPlan.java</include>
+            <include>**/NuxeoCaseManagementTestPlan.java</include>
           </includes>
         </configuration>
       </plugin>

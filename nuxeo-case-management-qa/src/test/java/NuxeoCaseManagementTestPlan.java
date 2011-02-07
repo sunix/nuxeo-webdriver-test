@@ -21,6 +21,6 @@ import org.nuxeo.qa.behaviourdriven.BehavioursCase;
  * @author Sun Seng David TAN <stan@nuxeo.com>
  * 
  */
-public class NuxeoCorrespondenceTestPlan extends BehavioursCase {
+public class NuxeoCaseManagementTestPlan extends BehavioursCase {
 
 }
