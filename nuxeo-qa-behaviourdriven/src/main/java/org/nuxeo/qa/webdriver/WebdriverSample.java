@@ -16,32 +16,38 @@
 package org.nuxeo.qa.webdriver;
 
 import org.nuxeo.qa.webdriver.driver.users.LoginPage;
-import org.nuxeo.qa.webdriver.finder.FindElementUntil;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.support.PageFactory;
 
 public class WebdriverSample {
     public static void main(String[] args) throws Exception {
         WebDriver driver = new FirefoxDriver();
 
-        LoginPage loginPage = LoginPage.getLoginPage(driver, "http://localhost:8080/nuxeo");
+        LoginPage loginPage = LoginPage.getLoginPage(driver,
+                "http://localhost:8080/nuxeo");
         loginPage.login("Administrator", "Administrator",
                 "English (United States)");
+        driver.findElement(By.linkText("Workspaces")).click();
+        driver.findElement(By.linkText("test")).click();
 
-        driver.findElement(By.linkText("Bree Van de Kaamp")).click();
-        driver.findElement(By.linkText("Test incoming pia document")).click();
-        driver.findElement(By.linkText("Distribute")).click();
+        driver.findElement(
+                By.id("document_content:nxl_document_listing_ajax:nxw_listing_ajax_selection_box_with_current_document")).click();
 
-        WebElement nxw_reponse_recipients_suggest = driver.findElement(By.id("distribution_participants:nxl_cm_participants:nxw_reponse_recipients_suggest"));
-        nxw_reponse_recipients_suggest.sendKeys("Bre");
+        boolean wait = true;
+        while (wait) {
+            try {
+                driver.findElement(
+                        By.id("document_content:clipboardActionsTable_0_0:3:clipboardActionsButton")).isEnabled();
+                wait = false;
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        driver.findElement(
+                By.id("document_content:clipboardActionsTable_0_0:3:clipboardActionsButton")).click();
 
-        WebElement ajaxUserListElement = new FindElementUntil(
-                driver,
-                By.xpath("//table[@id='distribution_participants:nxl_cm_participants:nxw_reponse_recipients_suggestionBox:suggest']/tbody/tr[1]/td[2]")).find();
-        String value = ajaxUserListElement.getText();
+        driver.switchTo().alert().accept();
 
         driver.quit();
     }
