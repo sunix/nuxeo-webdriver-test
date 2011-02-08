@@ -15,7 +15,7 @@
  */
 package org.nuxeo.qa.webdriver;
 
-import org.nuxeo.qa.webdriver.driver.users.LoginPage;
+import org.nuxeo.qa.webdriver.pages.users.LoginPage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;

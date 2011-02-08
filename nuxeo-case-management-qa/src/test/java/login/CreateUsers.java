@@ -16,8 +16,8 @@
  */
 package login;
 
-import org.nuxeo.qa.webdriver.driver.users.UserManagementFormPage;
 import org.nuxeo.qa.webdriver.finder.ElementNotFoundException;
+import org.nuxeo.qa.webdriver.pages.users.UserManagementFormPage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;

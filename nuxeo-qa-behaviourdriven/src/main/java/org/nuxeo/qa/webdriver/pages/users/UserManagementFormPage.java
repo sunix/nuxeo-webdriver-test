@@ -14,7 +14,7 @@
  * Contributors:
  *     Sun Seng David TAN <stan@nuxeo.com>
  */
-package org.nuxeo.qa.webdriver.driver.users;
+package org.nuxeo.qa.webdriver.pages.users;
 
 import org.nuxeo.qa.webdriver.finder.ElementNotFoundException;
 import org.nuxeo.qa.webdriver.finder.FindElementUntil;

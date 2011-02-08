@@ -19,7 +19,7 @@ package login;
 import org.junit.After;
 import org.junit.Before;
 import org.nuxeo.qa.behaviourdriven.BehavioursCase;
-import org.nuxeo.qa.webdriver.driver.users.LoginPage;
+import org.nuxeo.qa.webdriver.pages.users.LoginPage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
